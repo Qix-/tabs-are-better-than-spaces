@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+	<head>
+		<title>TABS ARE BETTER THAN SPACES</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		<style>
+			@keyframes bouncey {
+				0%, 100%   {width: 15px;}
+				50%        {width: 80px;}
+			}
+
+			.tab {
+				display: inline-block;
+				animation: bouncey 3s cubic-bezier(0.35,-0.04, 0.23, 1.04) infinite 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>Tabs are better, don't fight it.</h3>
+		<pre>
+			<code>Loading...</code>
+		</pre>
+
+		<sup>This is all in good fun. But not really. Tabs are better. <strong>Tabs are the future. <em>TABS ARE LIFE.</em></strong></sup>
+		<script>
+			var elem = document.querySelector('code');
+
+			function updateCode() {
+				var hash = window.location.hash || '#/chalk/chalk/master/index.js';
+				window.location.hash = hash;
+				var path = 'https://raw.githubusercontent.com/' + hash.substring(1);
+				path = path.replace(/\/+/g, '/');
+
+				var spl = path.split('.');
+				var ext = spl[spl.length - 1].toLowerCase();
+
+				var lang = (function (ext) {
+					switch (ext) {
+					case 'htaccess': return 'apache';
+					case 'css':      return 'css';
+					case 'html':
+					case 'htm':      return 'html';
+					case 'js':       return 'javascript';
+					case 'objc':
+					case 'hh':       // I know, it could be both...
+					case 'mm':
+					case 'm':        return 'objective-c';
+					case 'rb':
+					case 'ruby':     return 'ruby';
+					case 'bash':
+					case 'bash_profile':
+					case 'bashrc':
+					case 'zshrc':
+					case 'sh':       return 'bash';
+					case 'coffee':   return 'coffeescript';
+					case 'ini':
+					case 'conf':     return 'ini';
+					case 'php':
+					case 'php5':
+					case 'php4':
+					case 'php3':
+					case 'phps':     return 'php';
+					case 'sql':      return 'sql';
+					case 'cs':       return 'c#';
+					case 'diff':
+					case 'patch':    return 'diff';
+					case 'json':     return 'json';
+					case 'md':
+					case 'markdown': return 'markdown';
+					case 'perl':
+					case 'pl':       return 'perl';
+					case 'cc':
+					case 'c':
+					case 'cxx':
+					case 'cpp':
+					case 'h':
+					case 'hpp':
+					case 'hxx':      return 'c++';
+					case 'java':     return 'java';
+					case 'py':
+					case 'py3':      return 'python';
+					default:
+						spl = path.split('/');
+						var base = spl[spl.length - 1];
+
+						switch (base) {
+						case 'Makefile': return 'make';
+						}
+					};
+				})(ext);
+
+				elem.setAttribute('class', null);
+				if (lang) {
+					elem.classList.add(lang);
+				}
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', path, true);
+				
+				xhr.responseType = 'text';
+				
+				xhr.onload = function () {
+					if (xhr.readyState === xhr.DONE) {
+						if (xhr.status === 200) {
+							elem.innerHTML = xhr.responseText;
+							hljs.highlightBlock(elem);
+							elem.innerHTML = elem.innerHTML.replace(/\t/g, '<span class="tab"></'+'span>');
+						}
+					}
+				};
+				
+				xhr.send(null);
+			}
+
+			window.addEventListener('hashchange', updateCode);
+			updateCode();
+		</script>
+	</body>
+</html>
