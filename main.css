@@ -1,0 +1,9 @@
+  @keyframes bouncey {
+    0%, 100%   {width: 15px;}
+    50%        {width: 80px;}
+  }
+
+  .tab {
+    display: inline-block;
+    animation: bouncey 3s cubic-bezier(0.35,-0.04, 0.23, 1.04) infinite 0.5s;
+  }

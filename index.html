@@ -4,18 +4,8 @@
 		<title>TABS ARE BETTER THAN SPACES</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+		<link rel="stylesheet" href="main.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-		<style>
-			@keyframes bouncey {
-				0%, 100%   {width: 15px;}
-				50%        {width: 80px;}
-			}
-
-			.tab {
-				display: inline-block;
-				animation: bouncey 3s cubic-bezier(0.35,-0.04, 0.23, 1.04) infinite 0.5s;
-			}
-		</style>
 	</head>
 	<body>
 		<h3>Tabs are better, don't fight it.</h3>
@@ -102,9 +92,9 @@
 
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET', path, true);
-				
+
 				xhr.responseType = 'text';
-				
+
 				xhr.onload = function () {
 					if (xhr.readyState === xhr.DONE) {
 						if (xhr.status === 200) {
@@ -114,7 +104,7 @@
 						}
 					}
 				};
-				
+
 				xhr.send(null);
 			}
 
