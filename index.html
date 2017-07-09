@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.1.1/he.min.js"></script>
 		<style>
 			@keyframes bouncey {
 				0%, 100%   {width: 15px;}
@@ -108,7 +109,7 @@
 				xhr.onload = function () {
 					if (xhr.readyState === xhr.DONE) {
 						if (xhr.status === 200) {
-							elem.innerHTML = xhr.responseText;
+							elem.innerHTML = he.encode(xhr.responseText);
 							hljs.highlightBlock(elem);
 							elem.innerHTML = elem.innerHTML.replace(/\t/g, '<span class="tab"></'+'span>');
 						}
