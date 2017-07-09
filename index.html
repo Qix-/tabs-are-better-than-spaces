@@ -35,8 +35,9 @@
 			function updateCode() {
 				var hash = window.location.hash || '#/chalk/chalk/master/index.js';
 				window.location.hash = hash;
-				var path = 'https://raw.githubusercontent.com/' + hash.substring(1);
+				var path = 'raw.githubusercontent.com/' + hash.substring(1);
 				path = path.replace(/\/+/g, '/');
+				path = 'https://' + path;
 
 				var spl = path.split('.');
 				var ext = spl[spl.length - 1].toLowerCase();
